@@ -45,14 +45,18 @@ public class MainActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog,int id) {
                                 // Kliknięto tak
                                 // @TODO Reset ustawień
-
+                                pref.edit().clear().apply();
+                                showPrefs();
                                 // @TODO Wyświetlenie Toast z informacją
+                                Toast.makeText(MainActivity.this, "Ustawienia zostały usunięte", Toast.LENGTH_LONG).show();
+
                             }
                         })
                         .setNegativeButton("Nie",new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {
                                 // Kliknięto nie
                                 // @TODO Wyświetlenie Toast z informacją
+                                Toast.makeText(MainActivity.this, "Ustawienia nie zostały usunięte", Toast.LENGTH_LONG).show();
 
                                 dialog.cancel();
                             }
@@ -85,6 +89,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // @TODO Wyświetlanie przycisku kierującego do profilu Twitter, o ile taki został ustawiony
+        Boolean twitter_on = pref.getBoolean("twitter_on", false);
+        TextView textViewTwitterLogin =(TextView)findViewById(R.id.twitter_login);
+        TextView textViewTwitterLink = (TextView)findViewById(R.id.twitter_link);
+
+        if(twitter_on){
+            textViewTwitterLogin.setText("Twoj login twitter to" + pref.getString("twitter_login", "brak"));
+            textViewTwitterLink.setText(pref.getString("twitter_link", null));
+        }else{
+            textViewTwitterLogin.setText("Twitter wyłączony");
+            textViewTwitterLink.setText("");
+        }
     }
 
     @Override

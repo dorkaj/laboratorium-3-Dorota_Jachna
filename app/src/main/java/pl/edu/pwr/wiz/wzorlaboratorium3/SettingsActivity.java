@@ -51,14 +51,13 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 EditTextPreference editTextPreference = (EditTextPreference) preference;
                 EditText editText = editTextPreference.getEditText();
 
-                if( editText.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD) ) {
+                if (editText.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
                     /* Zastępujemy string przez gwiazdki */
                     stringValue = stringValue.replaceAll(".", "*");
                 }
 
                 preference.setSummary(stringValue);
-            }
-            else {
+            } else {
                 // Dla pozostalych opcji wyświetlamy tekst
                 preference.setSummary(stringValue);
             }
@@ -132,7 +131,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
         return PreferenceFragment.class.getName().equals(fragmentName)
                 || GeneralPreferenceFragment.class.getName().equals(fragmentName)
-                || FacebookPreferenceFragment.class.getName().equals(fragmentName);
+                || FacebookPreferenceFragment.class.getName().equals(fragmentName)
+                || TwitterPreferenceFragment.class.getName().equals(fragmentName);
+
     }
 
     /**
@@ -191,13 +192,38 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
     // @TODO Nowy fragment do obsługi Twittera
 
-    @Override
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static class TwitterPreferenceFragment extends PreferenceFragment {
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            addPreferencesFromResource(R.xml.pref_twitter);
+            setHasOptionsMenu(true);
+            bindPreferenceSummaryToValue(findPreference("twitter_login"));
+            bindPreferenceSummaryToValue(findPreference("twitter_pass"));
+            bindPreferenceSummaryToValue(findPreference("twitter_link"));
+        }
+
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            int id = item.getItemId();
+            if (id == android.R.id.home) {
+                startActivity(new Intent(getActivity(), SettingsActivity.class));
+                return true;
+            }
+            return super.onOptionsItemSelected(item);
+        }
+
+    }
+}
+
+   /* @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home) {
             finish();
             return true;
         }
-        return super.onOptionsItemSelected(item);
-    }
-}
+        return super.onOptionsItemSelected(item);*/
+
+

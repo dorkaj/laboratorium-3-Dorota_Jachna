@@ -28,13 +28,38 @@
         android:layout_marginTop="20dp"
         android:text="" />
 
-    <!-- @TODO dodać link do profilu Twitter -->   
+    <!-- @TODO dodać link do profilu Twitter -->
+    <TextView
+        android:id="@+id/twitter_link"
+        android:autoLink="web"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/twitter_login"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"
+        android:text=""
+        android:focusable="true"
+        android:clickable="true"
+        android:textColorLink="@color/link"
+
+        />
+
+    <TextView
+        android:id="@+id/twitter_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dane_fb"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"
+        android:text=""
+        />
+
 
     <Button
         android:text="@string/btn_reset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/dane_fb"
+        android:layout_below="@id/twitter_link"
         android:layout_alignParentStart="true"
         android:layout_marginTop="20dp"
         android:id="@+id/btn_reset" />

@@ -38,4 +38,11 @@
     <string name="pref_fb_pass">Twoje hasło FB</string>
 
     <!-- @TODO Dodać teksty istotne do obsługi Twittera -->
+    <string name="pref_header_twitter">Twitter</string>
+    <string name="pref_twitter_on">Włącz Twitter</string>
+    <string name="pref_twitter_login">Twoj login Twitter</string>
+    <string name="pref_twitter_link">Twoj link Twitter</string>
+    <string name="pref_twitter_pass">Twoje hasło do Twittera</string>
+
+
 </resources>
